@@ -11,11 +11,9 @@ def test():
         for t, target in tests:
             print("testing 'population_count(%d): " % (t), end="")
             res = population_count(t)
-            success = res == target
-            if not success:
-                raise AssertionError("incorrect result")
+            assert res == target, "incorrect result"
             print("%d : %s" % (res, "[success]"))
-    except AssertionError as e:
+    except Exception as e:
         print("n/a : [failure | %s]" % (e))
 
 
