@@ -16,6 +16,15 @@ def test():
     except Exception as e:
         print("n/a : [failure | %s]" % (e))
 
+def max_sum_of_subarray(l):
+    smax = -100
+    for idx in range(len(l)):
+        _sum = 0
+        for idx2 in range(idx, len(l)):
+            _sum += l[idx2]
+            if _sum > smax:
+                smax = _sum
+    print("max subarray size: %d" % smax)
 
 def help():
     print("""
@@ -28,6 +37,16 @@ where ARG:
 
 
 if __name__ == '__main__':
+
+    while True:
+        s = input().split()
+        if s == "":
+            break;
+        l = [int(x) for x in s]
+        max_sum_of_subarray(l)
+
+    sys.exit()
+
     if len(sys.argv) > 1:
         arg = sys.argv[1]
         if arg.isdigit():
