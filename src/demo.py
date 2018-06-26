@@ -12,7 +12,7 @@ where ARG:
 """ % (__file__))
 
     def population_count(self, count):
-        return len(str(bin(int(count)))[2:].replace('0', ''))
+        return len(str(bin(count))[2:].replace('0', ''))
 
     def test_population_count(self):
         tests = [(0, 0), (8, 1), (15, 4), (19, 3)]
@@ -57,7 +57,8 @@ where ARG:
                 if len(args) > 1:
                     arg = args[1]
                     if arg.isdigit():
-                        print("population_count: '%d'" % (self.population_count(arg)))
+                        print("one digits in binary of count '%d': '%d"
+                              % (int(arg), self.population_count(int(arg))))
                     elif arg == "test":
                         # too trivial for suite
                         self.test_population_count()
