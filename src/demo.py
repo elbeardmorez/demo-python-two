@@ -75,7 +75,9 @@ where ARG:
                 else:
                     print("reading from stdin")
                     lines = sys.stdin.readlines()
-                    if len(lines) > 0:
+                    if len(lines) == 0:
+                        self.help_largest_subarray()
+                    else:
                         for s in lines:
                             l = [int(x) for x in s.split()]
                             print("largest subarray: %d"
