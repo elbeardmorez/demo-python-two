@@ -4,11 +4,11 @@ class Demo:
 
     def help_population_count(self):
         print("""
-syntax: %s ARG
+syntax: %s one ARG
 
 where ARG:
   [0-9]+  : arbitrary positive integer
-  test    : to invoke tests
+  test    : run inline tests
 """ % (__file__))
 
     def population_count(self, count):
@@ -24,6 +24,14 @@ where ARG:
                 print("%d : %s" % (res, "[success]"))
         except Exception as e:
             print("n/a : [failure | %s]" % (e))
+
+    def help_largest_subarray():
+        print("""
+syntax: %s two ARGS
+
+where ARGS:
+  +/-[0-9]+  : arbitrary integer array
+""" % (__file__))
 
     def largest_subarray(self, l):
         smax = -100
@@ -50,6 +58,15 @@ where ARG:
         except Exception as e:
             print("n/a : [failure | %s]" % (e))
 
+    def help(self):
+        print("""
+syntax: %s <CHALLENGE> [CHALLENGE ARGS]
+
+where CHALLENGE:
+  one  : population count
+  two  : largest subarray
+""" % (__file__))
+
     def process(self, args):
         if len(args) > 0:
             arg = args[0]
@@ -62,6 +79,11 @@ where ARG:
                     elif arg == "test":
                         # too trivial for suite
                         self.test_population_count()
+                    else:
+                        self.help_population_count()
+                else:
+                    self.help_population_count()
+
             elif arg == "two":
                 l = []
                 if len(args) > 1:
@@ -83,6 +105,9 @@ where ARG:
                             l = [int(x) for x in s.split()]
                             print("largest subarray: %d"
                                   % (self.largest_subarray(l)))
+            else:
+                self.help()
+                print("unsupported arg %r!" % (str(arg)))
 
         else:
             self.help()
