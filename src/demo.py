@@ -33,28 +33,56 @@ where ARG:
                 _sum += l[idx2]
                 if _sum > smax:
                     smax = _sum
-        print("largest subarray: %d" % smax)
+        return smax
+
+    def test_largest_subarray(self):
+        tests = [([1, 2, 4], 7),
+                 ([-21, -1, -1, 0], 0),
+                 ([1, 2, -10, 3, 100, 1222], 1325),
+                 ([-1, -2, -5], -1)]
+        try:
+            for t, target in tests:
+                print("testing 'largest_subarray(%s): "
+                      % (" ".join([str(x) for x in t])), end="")
+                res = self.largest_subarray(t)
+                assert res == target, "incorrect result"
+                print("%d : %s" % (res, "[success]"))
+        except Exception as e:
+            print("n/a : [failure | %s]" % (e))
 
     def process(self, args):
         if len(args) > 0:
-            arg = sys.argv[0]
+            arg = args[0]
             if arg == "one":
-                if len(sys.argv) > 1:
-                    arg = sys.argv[1]
+                if len(args) > 1:
+                    arg = args[1]
                     if arg.isdigit():
-                        print("population_count: '%d'" % (population_count(arg)))
+                        print("population_count: '%d'" % (self.population_count(arg)))
                     elif arg == "test":
                         # too trivial for suite
                         self.test_population_count()
             elif arg == "two":
-                while True:
-                    s = input().split()
-                    if s == "":
-                        break;
-                    l = [int(x) for x in s]
-                    self.largest_subarray(l)
+                l = []
+                if len(args) > 1:
+                    arg = args[1]
+                    if arg == "test":
+                        # too trivial for suite
+                        self.test_largest_subarray()
+                    else:
+                        l = [int(x) for x in args[1:]]
+                        print("largest subarray: %d"
+                              % (self.largest_subarray(l)))
+                else:
+                    print("reading from stdin")
+                    lines = sys.stdin.readlines()
+                    if len(lines) > 0:
+                        for s in lines:
+                            l = [int(x) for x in s.split()]
+                            print("largest subarray: %d"
+                                  % (self.largest_subarray(l)))
+
         else:
-            help()
+            self.help()
             print("missing arg!")
 
 if __name__ == '__main__':
