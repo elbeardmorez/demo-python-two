@@ -25,7 +25,7 @@ where ARG:
         except Exception as e:
             print("n/a : [failure | %s]" % (e))
 
-    def help_largest_subarray():
+    def help_largest_subarray(self):
         print("""
 syntax: %s two ARGS
 
