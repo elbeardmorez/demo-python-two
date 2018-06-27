@@ -97,7 +97,7 @@ where CHALLENGE:
                         print("largest subarray: %d"
                               % (self.largest_subarray(l)))
                 else:
-                    print("reading from stdin")
+                    print("reading from stdin [ctrl-d exits]")
                     lines = sys.stdin.readlines()
                     if len(lines) == 0:
                         self.help_largest_subarray()
