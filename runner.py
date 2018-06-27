@@ -1,4 +1,5 @@
 import sys
+import os
 import unittest
 from src.demo import Demo
 
@@ -10,7 +11,7 @@ where ARG:
   demo one [args]   : run demo one, population count
   demo two [args]   : run demo two, max subarray
   test              : run tests
-""" % (__file__))
+""" % (os.path.basename(__file__)))
 
 if __name__ == '__main__':
 

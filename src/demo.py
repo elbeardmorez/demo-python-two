@@ -1,4 +1,5 @@
 import sys
+import os
 
 class Demo:
 
@@ -9,7 +10,7 @@ syntax: %s one ARG
 where ARG:
   [0-9]+  : arbitrary positive integer
   test    : run inline tests
-""" % (__file__))
+""" % (os.path.basename(__file__)))
 
     def population_count(self, count):
         return len(str(bin(count))[2:].replace('0', ''))
@@ -31,7 +32,7 @@ syntax: %s two ARGS
 
 where ARGS:
   +/-[0-9]+  : arbitrary integer array
-""" % (__file__))
+""" % (os.path.basename(__file__)))
 
     def largest_subarray(self, l):
         smax = -100
@@ -65,7 +66,7 @@ syntax: %s <CHALLENGE> [CHALLENGE ARGS]
 where CHALLENGE:
   one  : population count
   two  : largest subarray
-""" % (__file__))
+""" % (os.path.basename(__file__)))
 
     def process(self, args):
         if len(args) > 0:
